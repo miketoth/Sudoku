@@ -36,7 +36,7 @@ public class SudkouUI extends javax.swing.JFrame {
 
         welcomePage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sudoku Puzzle Solver", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
-        puzzleSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "9" }));
+        puzzleSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "9", "4" }));
         puzzleSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 puzzleSizeActionPerformed(evt);
@@ -117,7 +117,12 @@ public class SudkouUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        new PuzzleUI().setVisible(true);
+        if(((String)puzzleSize.getSelectedItem()).equals("9")){
+            new PuzzleUI().setVisible(true);
+        }
+        else{
+            new PuzzleUI4().setVisible(true);
+        }
     }//GEN-LAST:event_nextButtonActionPerformed
 
     /**

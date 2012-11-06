@@ -1,5 +1,6 @@
 package sudokuSolver;
 
+import java.lang.Math;
 
 public class SudokuPuzzle {
 	
@@ -27,6 +28,11 @@ public class SudokuPuzzle {
 		// check to see if it is a perfect square!
 		this.size = size; // sets size to inputed size 
 		int[][] puzzle = new int[size][size];
+                
+                if(in.length < puzzle.length){
+                    System.err.print("input length does not match puzzle size");
+                    System.exit(0);
+                }
 
 		fill(puzzle);
 		fill(in, puzzle);
@@ -51,25 +57,27 @@ public class SudokuPuzzle {
 	boolean checkLegal(int positionI, int positionJ, int input, int[][] puzzle){
 		
 		//check i
-		for(int i=0;i<9;++i){
+		for(int i=0;i<size;++i){
 			if(input == puzzle[i][positionJ]){
 				return false;
 			}
 		}
 		
 		//check j
-		for(int i=0;i<9;++i){
+		for(int i=0;i<size;++i){
 			if(input == puzzle[positionI][i]){
 				return false;
 			}
 		}
-		
-		// find which box i and j are in
-		int iBox =(positionI/3)*3;
-		int jBox =(positionJ/3)*3;
+		                
+                // assumes that square root is an integer (should check in constructor)
+                int sqrtSize = (int) Math.sqrt((double)size); 
+                
+		int iBox =(positionI/sqrtSize)*sqrtSize;
+		int jBox =(positionJ/sqrtSize)*sqrtSize;
 
-        for (int i = 0; i < 3; ++i){
-            for (int j = 0; j < 3; ++j){
+        for (int i = 0; i < sqrtSize; ++i){
+            for (int j = 0; j < sqrtSize; ++j){
             	if (input == puzzle[iBox+i][jBox+j]){
                     return false;
                 }
@@ -81,26 +89,20 @@ public class SudokuPuzzle {
 	boolean solve(int i,int j, int puzzle[][]){
 			int inputNumber = 1;
 			// if i and j are 9: at the end of the puzzle so stop
-			if(i==9){
+			if(i==size){
 				i=0;
-				if(++j == 9){
+				if(++j == size){
 					return true;
 				}
 			}
 
 			if(puzzle[i][j] != 0){
-		//		System.out.println(i + " " + j);
 				return solve(i+1, j, puzzle);
 			}
 			
-			while(inputNumber <= 9){
-				
-			//	System.out.println("While is ok");
-				
+			while(inputNumber <= size){	
 				if(checkLegal(i, j, inputNumber, puzzle)){
 					puzzle[i][j] = inputNumber;
-					
-				//	System.out.println("Puzzle Value " + puzzle[i][j]);
 					if(solve(i+1, j, puzzle)){
 						return true;
 					}
@@ -113,7 +115,6 @@ public class SudokuPuzzle {
 	
 	
 	boolean solve(int[][] puzzle){
-		
 		if(solve(0,0,puzzle)){
 			return true;
 		}
@@ -139,7 +140,7 @@ public class SudokuPuzzle {
 	
 	
 	/**
-	 * Puts some numbers in the puzzle
+	 * fills an int[][] with 0s.
 	 */
 	void fill(int[][] puzzle){
 		for(int i =0; i<puzzle.length;i++){
@@ -148,6 +149,15 @@ public class SudokuPuzzle {
 			}
 		}
 	}
+        /**
+         * fills an int[] with 0s
+         * @param puzzle 
+         */
+        void fill(int[] puzzle){
+            for(int i=0;i<puzzle.length;i++){
+                puzzle[i] =0;
+            }
+        }
 	
 	/**
 	 * Puts an array of ints into the puzzle
@@ -155,6 +165,12 @@ public class SudokuPuzzle {
 	 */
 	
 	void fill(int[] number, int[][] puzzle){
+            
+            if(number.length < puzzle.length){
+                number = new int[puzzle.length];
+                fill(number);
+            }
+            
 		int p=0;
 		for(int i =0; i<puzzle.length;i++){
 			for(int j=0;j<puzzle.length;j++){

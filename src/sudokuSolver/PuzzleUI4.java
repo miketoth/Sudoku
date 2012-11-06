@@ -8,27 +8,21 @@ package sudokuSolver;
  *
  * @author Skullum
  */
-public class PuzzleUI extends javax.swing.JFrame {
+public class PuzzleUI4 extends javax.swing.JFrame {
 
     /**
-     * Creates new form PuzzleUI
+     * Creates new form PuzzleUI4
      */
-    public PuzzleUI() {
+    public PuzzleUI4() {
         initComponents();
         
-        // set table column size..manually :(
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(40);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(40);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(6).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(7).setPreferredWidth(40);
-        jTable1.getColumnModel().getColumn(8).setPreferredWidth(40);
         
-        // set table row height
         jTable1.setRowHeight(40);
+        
     }
 
     /**
@@ -48,38 +42,29 @@ public class PuzzleUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sudoku Puzzle", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "", "", "", "", "", "", "", "", ""
+                "", "", "", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setMinimumSize(new java.awt.Dimension(370, 370));
-        jTable1.setPreferredSize(new java.awt.Dimension(370, 370));
+        jTable1.setMaximumSize(new java.awt.Dimension(170, 170));
+        jTable1.setMinimumSize(new java.awt.Dimension(170, 170));
+        jTable1.setPreferredSize(new java.awt.Dimension(160, 160));
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         solveButton.setText("Solve");
         solveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -99,27 +84,26 @@ public class PuzzleUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(115, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addComponent(solveButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(cancelButton)))
+                .addGap(308, 308, 308))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(solveButton)
-                    .addComponent(cancelButton))
-                .addGap(15, 15, 15))
+                    .addComponent(cancelButton)
+                    .addComponent(solveButton))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,14 +112,15 @@ public class PuzzleUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,12 +131,12 @@ public class PuzzleUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
-        int[] table_values = new int[81];
+        int[] table_values = new int[16];
         int cell =0;
         
         // check to see if input is null
-            for(int i=0;i<9;i++){
-                for(int j=0;j<9;j++){
+            for(int i=0;i<4;i++){
+                for(int j=0;j<4;j++){
                     try{
                         table_values[cell] = (Integer)jTable1.getValueAt(j, i); // should check to make sure Strings are inputted and that they are ints
                     }catch(Exception e){
@@ -163,11 +148,11 @@ public class PuzzleUI extends javax.swing.JFrame {
         
         // call sudoku solve button and pass table_values into it
         
-            SudokuPuzzle p = new SudokuPuzzle(9, table_values);
+            SudokuPuzzle p = new SudokuPuzzle(4, table_values);
             int[][] puzzle = p.getAnswerPuzzle();
         
-            for(int i=0;i<9;i++){
-                for(int j=0;j<9;j++){
+            for(int i=0;i<4;i++){
+                for(int j=0;j<4;j++){
                     jTable1.setValueAt(puzzle[i][j], j, i);
                 }
             }
